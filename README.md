@@ -49,9 +49,11 @@ This starts: PostgreSQL (5432), Redis (6379), RabbitMQ (5672, management UI 1567
 
 ```bash
 cd backend
-python -m venv .venv
+python -m venv .venv # python -m venv leet_venv
 source .venv/bin/activate        # Windows: .\leet_venv\Scripts\activate
 pip install -r requirements.txt
+       or
+python -m pip install -r requirements.txt
 
 cp .env.example .env             # Edit as needed
 
@@ -60,6 +62,8 @@ python manage.py createsuperuser
 python manage.py seed_data       # Loads sample problems, contests, ads
 
 uvicorn config.asgi:application --reload --port 8000
+
+daphne -b 0.0.0.0 -p 8000 config.asgi:application
 ```
 
 ### 3. Judge Worker Setup
